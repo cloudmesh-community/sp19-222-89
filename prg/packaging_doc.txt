@@ -1,1 +1,15 @@
 This is how to package a python app:
+1)Create a fresh python virtual environment
+
+2)Create directory structure. Root has the name of your package. Contained in
+it is another directory with the package name, a requirements.txt, and a setup.py.
+
+3)At bottom of directory structure (i.e. in the lowest directory with our package name)
+write __init__.py file and your .py file that does whatever you want it to do.
+
+4)Inside root directory, run pip freeze > requirements.txt
+This will fill your requirements.txt with all dependencies that your package requires.
+
+5)Inside root directory, run pip install -r requirements.txt
+
+6)Now you're ready to use your package
