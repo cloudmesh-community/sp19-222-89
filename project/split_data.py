@@ -47,7 +47,6 @@ def split(data):
         for j in range(0, nfeatures):
             a_features[i][j] = list(a[i])[j]
 
-    
     #split to training and testing
 
     #80% for training, 20% for testing

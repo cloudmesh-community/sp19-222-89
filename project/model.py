@@ -15,7 +15,7 @@ data += read("data_130.csv") + read("data_53.csv")
 features_training, labels_training, features_testing, labels_testing = split(data)
 
 #create SVM model
-svm_model = svm.SVC(max_iter = 10000, kernel='rbf')
+svm_model = svm.SVC(max_iter = 10000, kernel='rbf', gamma = 'auto'  )
 svm_model.fit(features_training, labels_training.ravel())
 
 dump(svm_model, 'model.joblib')
