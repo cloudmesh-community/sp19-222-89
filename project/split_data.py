@@ -1,9 +1,8 @@
-#this function splits the returned by read_data into training and
-#testing using an 80-20 split (respectively)
+#this function correctly formats the input data into a 2D numpy array
 
 import numpy as np
 
-def split(data):
+def format(data):
 
     #variable to store # of features, in this case we have 8
     nfeatures = 8
@@ -18,9 +17,35 @@ def split(data):
     #convert our data list to a numpy array
     a = np.array(list_data)
 
+    #find out how many labels we need
+    a_shape = np.shape(a)
 
-    #randomly shuffle the data/corresponding labels
-    #np.random.shuffle(a);
+    #now make array for features
+    a_features = np.zeros((a_shape[0], nfeatures))
+
+    
+    #populate that array
+    for i in range(0, a_shape[0]):
+        for j in range(0, nfeatures):
+            a_features[i][j] = list(a[i])[j]
+
+    return a_features
+
+#splits the data for training/testing
+def split(data):
+
+    #variable to store # of features, in this case we have 8
+    nfeatures = 8
+    
+    #get the values from the list of dictionaries, put them into
+    #a new list
+    list_data = []
+    
+    for i in data:
+        list_data.append(i.values())
+
+    #convert our data list to a numpy array
+    a = np.array(list_data)
     
     #separate features from labels
 
@@ -37,7 +62,6 @@ def split(data):
         else:
             a_labels[i] = 0
 
-
     #now make array for features
     a_features = np.zeros((a_shape[0], nfeatures))
 
@@ -46,7 +70,7 @@ def split(data):
     for i in range(0, a_shape[0]):
         for j in range(0, nfeatures):
             a_features[i][j] = list(a[i])[j]
-
+            
     #split to training and testing
 
     #80% for training, 20% for testing
