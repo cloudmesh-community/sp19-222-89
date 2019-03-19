@@ -16,4 +16,8 @@ creating GitHub teams for each group after that.
 example of comparing cars. We used top speed, transmission type, model year,
 and color to compare cars and determine if they'd be fast or not fast.
 
-This included writing KNN_example python notebook in my prg directory.
+This included writing KNN_example python notebook in my prg directory. Also
+covered was the importance of standardization or normalization of data.
+We used standardization to make it so that top speed and model year
+wouldn't have a disproportionately huge impact on how the car was labeled
+vs our other features because of their large numeric values.
