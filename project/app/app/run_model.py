@@ -4,13 +4,13 @@ from joblib import dump, load
 from read_data import read
 import numpy as np
 from split_data import format
-from test_model import run_metrics, F1
-
-#reload svm model from file
-svm_model = load('model.joblib')
+from flask import jsonify, request
 
 def run_model(fpath):
 
+    #reload svm model from file
+    svm_model = load('model.joblib')
+    
     #create list to hold final labels
     anwser = []
 
@@ -26,4 +26,6 @@ def run_model(fpath):
     anwser = svm_model.predict(input_formatted) 
     return anwser 
 
-
+def do_this():
+    if request.method == 'POST':
+        print(request.form)
