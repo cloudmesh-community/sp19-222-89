@@ -21,3 +21,8 @@ covered was the importance of standardization or normalization of data.
 We used standardization to make it so that top speed and model year
 wouldn't have a disproportionately huge impact on how the car was labeled
 vs our other features because of their large numeric values.
+
+3/21/19: Finished KNN example, talked about logistic regression as well.
+In lab, we worked on getting the cms tools working, and running the new
+cloudmesh.nn service. We also each picked a machine learning algorithm to code
+and explain the example of for next time.
