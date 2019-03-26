@@ -26,3 +26,6 @@ vs our other features because of their large numeric values.
 In lab, we worked on getting the cms tools working, and running the new
 cloudmesh.nn service. We also each picked a machine learning algorithm to code
 and explain the example of for next time.
+
+3/26/19: Talked about packaging of python files, dealing with directory
+weirdness/importing a package from a different directory
