@@ -28,4 +28,11 @@ cloudmesh.nn service. We also each picked a machine learning algorithm to code
 and explain the example of for next time.
 
 3/26/19: Talked about packaging of python files, dealing with directory
-weirdness/importing a package from a different directory
+weirdness/importing a package from a different directory. Need to use
+this to separate our code into individual directories instead
+of having all of our code inside one directory.
+
+server.py in own directory (topmost). Then in __init__.py inside each sbudir
+ do:
+import os
+(name)_dir = os.getwd()
