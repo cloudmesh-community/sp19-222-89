@@ -36,3 +36,24 @@ server.py in own directory (topmost). Then in __init__.py inside each sbudir
  do:
 import os
 (name)_dir = os.getwd()
+
+Also talked about docker. Looked up how to get docker container's ip address,
+you use 
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id
+
+We'll probably want this for setting up the docker container to run either on
+the local machine of our user or on a cloud platform that will host it for us.
+docker build -t docker_example:latest
+
+3/28/19: Talked more about Docker.
+Process: make Dockerfile, then run build as shown below, then
+do docker run as shown below. To view the running/open containers,
+use docker container ls -all.
+
+docker build -t docker_example:latest .
+-t lets us specify the name
+
+docker run -i -p 5000:5000 tag_name
+-i gives terminal to let us actually enter a container 
+-p defines port
+tag_name is what we named it in the docker build line
