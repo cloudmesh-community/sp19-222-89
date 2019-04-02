@@ -9,7 +9,8 @@ from flask import jsonify, request
 def run_model(fpath):
 
     #reload svm model from file
-    svm_model = load('model.joblib')
+    #need to choose latest model
+    svm_model = load('newmodel.joblib')
     
     #create list to hold final labels
     anwser = []

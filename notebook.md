@@ -57,3 +57,30 @@ docker run -i -p 5000:5000 tag_name
 -i gives terminal to let us actually enter a container 
 -p defines port
 tag_name is what we named it in the docker build line
+
+4/2/2019: Machine Learning + Cloud Services
+
+Logistic regression
+t(x) = a + Bx
+Probability y(x)=1 is 1/(1+exp(-t(x)))
+Probability y(x) = 0 is exp(-t(x))/(1+exp(-t(x)))
+Total probability of set of measurements (x1, x2), (x2,y2)...(xn, yn) is 
+P(y1)P(y2)...P(yn)
+Minimize -lnP(y1)-lnP(y2)...-lnP(yn)
+
+Clustering = unsupervised learning
+
+K-Means: partition n data points into k clusters
+Went through visual example(s)
+Pros: can be applied to many use cases, easy to understand and implement
+Always converged to something
+Cons: computation intensive if there's too many points, could be unlucky
+with initializing centroids, may be unsure of what value to use for k,
+algorithm not robust to noise
+
+Visualize data before carrying out algorithm
+Try to reduce number of clusters
+Remove noise before performing k-means
+Try one of the improved clustering algorithms
+
+Webplotviz is good online tool for visualizing data

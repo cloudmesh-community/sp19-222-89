@@ -18,9 +18,9 @@ produces:
 basePath: "/app"
 
 paths:
-  /upload:
+  /run:
     get:
-      operationId: upload.display
+      operationId: uploadrun.display
       description: "Displays upload file page"
       responses:
         "200":
@@ -28,7 +28,23 @@ paths:
 
   /upload_file:
     post:
-      operationId: upload.upload
+      operationId: uploadrun.upload
+      description: "Generate post request to actually upload file"
+      responses:
+        "201":
+          description: "File upload successful"
+
+  /retrain:
+    get:
+      operationId: uploadrerun.display
+      description: "Displays upload new training file page"
+      responses:
+        "200":
+          description: "Upload page displayed successfully"
+
+  /upload_file_retrain:
+    post:
+      operationId: uploadrerun.upload
       description: "Generate post request to actually upload file"
       responses:
         "201":
