@@ -7,6 +7,8 @@ def display():
 
 def upload():
     results = []
+    s_cone_indices = []
+    s_count  = 0
     APP_ROOT = os.path.dirname(os.path.abspath(__file__))
     target = os.path.join(APP_ROOT, 'data/')
 
@@ -17,13 +19,15 @@ def upload():
         filename = file.filename
         destination = "/".join([target, filename])
         file.save(destination)
-        results.append(run_model(destination))
+        answer = run_model(destination)
+        results.append(answer)
+        indices = np.zeros(len(answer))
 
-    s_count = 0
-    for i in results:
-        for j in i:
-            if(j == 1):
-                s_count+=1
+        for i in range(len(answers)):
+            if(answers[i]==1):
+                s_count +=1
+                indices[i] = 1
+                    
         
     f_result = open("./templates/complete.html", "w")
     f_result.write("")

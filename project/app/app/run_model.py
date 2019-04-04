@@ -13,7 +13,7 @@ def run_model(fpath):
     svm_model = load('newmodel.joblib')
     
     #create list to hold final labels
-    anwser = []
+    answer = []
 
     #pass the given file to our read function to get its data
     input = read(fpath)
@@ -22,10 +22,13 @@ def run_model(fpath):
     #form so that sci-kit learn will use it
     input_formatted = format(input) 
 
+    #Now let's create an array of indices the same length as our data
+    #indices = np.arange(0,len(input_formatted))
+
     #run prediction on every data point given, return resultant list
     #of classifications
-    anwser = svm_model.predict(input_formatted) 
-    return anwser 
+    answer = svm_model.predict(input_formatted) 
+    return answer
 
 def do_this():
     if request.method == 'POST':

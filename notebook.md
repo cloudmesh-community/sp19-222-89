@@ -106,3 +106,5 @@ your algorithm not fall prey to local minimums.
 
 Parallelism for K-Means is relatively simple and easy to implement. Adapt
 it to use with Map Reduce
+
+Lab: talked about report setup, then worked on project

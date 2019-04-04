@@ -6,7 +6,7 @@
 
 from read_data import read
 from split_data import split
-from sklearn import svm
+from sklearn import svm, utils
 from joblib import dump
 from test_model import run_metrics_model, F1, read_model_from_file
 import os
@@ -22,6 +22,8 @@ def first_model():
 
     data = read("data_151.csv")
     data += read("data_130.csv") + read("data_53.csv")
+    utils.shuffle(data)
+
     features_training, labels_training, features_testing, labels_testing = split(data)
 
     #create SVM model
@@ -57,6 +59,11 @@ def retrain_model(new_files):
         lines[i] = lines[i].rstrip()
         data += read("./data/" + lines[i])
 
+    #Shuffle the data before splitting. This function will move the
+    #individual feature/label vectors around, but will not change
+    #the order of the values inside these vectors
+    utils.shuffle(data)
+    
     features_training, labels_training, features_testing, labels_testing = split(data)
 
     #create SVC model
@@ -79,15 +86,48 @@ def retrain_model(new_files):
     f1 = F1(TP, FP, TN, FN)
     #print('Coord_x|Coord_y|ISOS_z|ISOS_Size_x|ISOS_Size_y|COST_z|COST_Size_x|COST_Size_y ')
     #print(svm_model.coef_)
-    print('F1 score = ' + str(f1))
+    #print('F1 score = ' + str(f1))
 
+    #Erase what's already in the file
     f_result = open("./templates/complete_retrain.html", "w")
     f_result.write("")
     f_result.close
+
+    #Now fill it with what we want
     f_result = open("./templates/complete_retrain.html", "a")
     f_result.write("<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n\t<meta charset=\"UTF-8\">\n\t<title>Title</title>\n</head>\n<body>")
-    f_result.write("TP: " + str(TP) + "<br />FP: " + str(FP) + 
-    "<br />TN: " + str(TN) + "<br />FN: " + str(FN) + "<br />")
+    
+    f_result.write(
+    '<style type="text/css">'
+    '.tg  {border-collapse:collapse;border-spacing:0;}'
+    '.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}'
+    '.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}'
+    '.tg .tg-s6z2{text-align:center}'
+    '.tg .tg-s268{text-align:left}'
+    '</style>'
+    '<table class="tg">'
+    '<tr>'
+        '<th class="tg-s268" colspan="2" rowspan="2"></th>'
+        '<th class="tg-s6z2" colspan="2">Actual Class</th>'
+    '</tr>'
+    '<tr>'
+        '<td class="tg-s268">S-Cone</td>'
+        '<td class="tg-s268">Other</td>'
+    '</tr>'
+    '<tr>'
+        '<td class="tg-s6z2" rowspan="2">Predicted<br>Class</td>'
+        '<td class="tg-s268">S-Cone</td>'
+        '<td class="tg-s268">' + str(TP) + '</td>'
+        '<td class="tg-s268">' + str(FP) + '</td>'
+    '</tr>'
+    '<tr>'
+        '<td class="tg-s268">Other</td>'
+        '<td class="tg-s268">' + str(FN) + '</td>'
+        '<td class="tg-s268">' + str(TN) + '</td>'
+    '</tr>'
+    '</table>'
+    '<br /><br /><br />'
+    )
     f_result.write("F1: " + str(f1) + "<br />")
     f_result.write("\n</body>\n</html>")
     f_result.close()
