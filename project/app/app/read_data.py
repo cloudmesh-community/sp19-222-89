@@ -1,5 +1,5 @@
 #this function is meant to read in the data from the .csv file and return
-#a numpy array containing all the data. It also filters out any rows in the
+#a list containing all the data. It also filters out any rows in the
 #data which include NaN as either a feature or a label
 
 """Important note: when the data is read using the csv.DictReader,
@@ -20,11 +20,8 @@ def read(fpath):
 
         #make data list
         data = []
-
-        #make boolean nan variable to store if we hit a nan value
-        nan = 0
         
-        #boolean to store if there's a non value or not
+        #boolean nan to store if there's a non value or not
         for row in reader:
             nan = 0
             for i in row.items():

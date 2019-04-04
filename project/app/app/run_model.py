@@ -29,7 +29,3 @@ def run_model(fpath):
     #of classifications
     answer = svm_model.predict(input_formatted) 
     return answer
-
-def do_this():
-    if request.method == 'POST':
-        print(request.form)

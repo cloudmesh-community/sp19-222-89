@@ -22,8 +22,13 @@ def first_model():
 
     data = read("data_151.csv")
     data += read("data_130.csv") + read("data_53.csv")
+
+    #Shuffle order of feature/label vectors within array.
+    #Does not change the order of values within the vectors
     utils.shuffle(data)
 
+    #data is split into training and testing sets. The split function
+    #turns the python list data into a numpy array in this process
     features_training, labels_training, features_testing, labels_testing = split(data)
 
     #create SVM model
@@ -36,34 +41,55 @@ def first_model():
 
     TP, FP, TN, FN = run_metrics_model(svm_model, features_testing, labels_testing)
     f1 = F1(TP, FP, TN, FN)
-    print('Coord_x|Coord_y|ISOS_z|ISOS_Size_x|ISOS_Size_y|COST_z|COST_Size_x|COST_Size_y ')
-    #print(svm_model.coef_)
-    print('F1 score = ' + str(f1))
+    return f1
 
 def retrain_model(new_files):
+
+    #Indices list will keep track of original cell index values
+    #from the csv through the shuffle operation below.
+    #This will allow us to report later on which cells, by csv index,
+    #were labeled as s-cones
+    indices = []
+
     #open list.txt, add newest filename to the end
     flist = open("./data/list.txt", "a")
     for file in new_files:
         flist.write(file + "\n")
     flist.close
 
+    #open list.txt file, read all of its lines into list lines
     with open("./data/list.txt") as flist:
         lines = flist.readlines()
 
+    #Pull this case out of the for loop because we need to create data
     lines[0] = lines[0].rstrip()
+
+    #create data list, make it equal to data from first file
+    #listed in list.txt
     data = read(lines[0])
+
+    #append the csv indices for the first file to indices
+    indices.append(np.arange(0,len(data)))
 
     #need to make sure we have the 3 starting datasets in the ./data
     #directory, and need to reference that with ./data
     for i in range(1,len(lines)):
         lines[i] = lines[i].rstrip()
-        data += read("./data/" + lines[i])
+        new = read("./data/" + lines[i])
+
+        #add the newly read in data to our data list
+        data += new
+
+        #append new list of indices to our list, using new this time
+        indices.append(np.arange(0,len(new)))
 
     #Shuffle the data before splitting. This function will move the
     #individual feature/label vectors around, but will not change
     #the order of the values inside these vectors
-    utils.shuffle(data)
+    utils.shuffle(data, indices)
     
+    #data is split into training and testing sets. The split function
+    #turns the python list data into a numpy array in this process
     features_training, labels_training, features_testing, labels_testing = split(data)
 
     #create SVC model
@@ -82,11 +108,24 @@ def retrain_model(new_files):
 
     #svm_model=read_model_from_file()
 
-    TP, FP, TN, FN = run_metrics_model(svm_model, features_testing, labels_testing)
+    TP, FP, TN, FN, predictions = run_metrics_model(svm_model, features_testing, labels_testing)
     f1 = F1(TP, FP, TN, FN)
-    #print('Coord_x|Coord_y|ISOS_z|ISOS_Size_x|ISOS_Size_y|COST_z|COST_Size_x|COST_Size_y ')
-    #print(svm_model.coef_)
-    #print('F1 score = ' + str(f1))
+    
+    #Create list to hold csv index of each s_cone we find
+    s_cone_list = []
+
+###################################################################
+#Note: the for loop below uses the index of the cone from the
+#predictions list. For the case where we have more than 1 file,
+#the s_cone list will contain its global position from the entire
+#list of csvs used. This should be fixed, probably to somehow include
+#the filename that the cone came from...
+###################################################################
+    #For each 1 in the predictions list, add its index to the
+    #s_cone list.
+    for i in range(len(predictions)):
+        if(predictions[i] == 1):
+            s_cone_list.append(i)
 
     #Erase what's already in the file
     f_result = open("./templates/complete_retrain.html", "w")
@@ -128,6 +167,7 @@ def retrain_model(new_files):
     '</table>'
     '<br /><br /><br />'
     )
-    f_result.write("F1: " + str(f1) + "<br />")
-    f_result.write("\n</body>\n</html>")
+    f_result.write("F1: " + str(f1) + "<br /><br /><br />")
+    f_result.write("List of S-Cone indices: " + str(s_cone_list))
+    f_result.write("<br /><br /><br />\n</body>\n</html>")
     f_result.close()

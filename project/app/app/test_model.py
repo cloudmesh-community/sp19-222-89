@@ -4,18 +4,15 @@
 from joblib import load
 from copy import copy
 
-#read the model from a saved file so we don't generate a new one each time
-def read_model_from_file():
-    svm_model = load('model.joblib')
-    return svm_model
-
 #run metrics on a newly generated/updated model
 def run_metrics_model(model, features_testing, labels_testing):
     TP, FP, TN, FN = 0, 0, 0, 0
 
+    mp = model.predict(features_testing)
+
     for n in range(0, len(labels_testing)):
         
-        mp = model.predict(features_testing)
+        #mp = model.predict(features_testing)
         if mp[n] == labels_testing[n] and mp[n] == 1:
             TP += 1
         if mp[n] == labels_testing[n] and mp[n] == 0:
@@ -26,7 +23,7 @@ def run_metrics_model(model, features_testing, labels_testing):
             FN += 1
     print("TP:", TP , 'TN:',  TN, 'FP:', FP, 'FN', FN)
 
-    return TP, FP, TN, FN
+    return TP, FP, TN, FN, mp
 
 #reports F1 score given TP FP TN FN
 def F1(TP, FP, TN, FN):
