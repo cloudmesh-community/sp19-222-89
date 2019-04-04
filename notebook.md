@@ -84,3 +84,25 @@ Remove noise before performing k-means
 Try one of the improved clustering algorithms
 
 Webplotviz is good online tool for visualizing data
+
+4/4/2019: K-means clustering examples
+T-Shirt example first, showed clustering using various K values, plotted
+with webplotviz
+
+One K-Means variant uses a fixed size cluster and just finds you as 
+many clusters of that size as it can. Returned 420,000 clusters for
+fungi data
+
+Visualization can identify problems, especially with biological
+classificiation done by people
+
+Dimensionality reduction important to visualize, take hundreds of
+features down to 3
+
+Went throughlots of good/bad examples of the clustesr made by
+k-means (mainly bad) because of reaching some local minima instead of global.
+Using stochastic gradient descent instead of gradient descent can make
+your algorithm not fall prey to local minimums.
+
+Parallelism for K-Means is relatively simple and easy to implement. Adapt
+it to use with Map Reduce
