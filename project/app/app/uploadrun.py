@@ -22,10 +22,12 @@ def upload():
         answer = run_model(destination)
         results.append(answer)
 
-        for i in range(len(answers)):
-            if(answers[i]==1):
+        s_cone_indices[file.filename] = []
+
+        for i in range(len(answer)):
+            if(answer[i]==1):
                 s_count +=1
-                s_cone_indices[file.filename] = i
+                s_cone_indices[file.filename].append(i)
                     
         
     f_result = open("./templates/complete.html", "w")

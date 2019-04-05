@@ -8,7 +8,7 @@ from read_data import read
 from split_data import split
 from sklearn import svm, utils
 from joblib import dump
-from test_model import run_metrics_model, F1, read_model_from_file
+from test_model import run_metrics_model, F1
 import os
 
 def first_model():
@@ -105,8 +105,6 @@ def retrain_model(new_files):
     os.rename("newmodel.joblib", "oldmodel.joblib")
 
     dump(svm_model, "newmodel.joblib")
-
-    #svm_model=read_model_from_file()
 
     TP, FP, TN, FN, predictions = run_metrics_model(svm_model, features_testing, labels_testing)
     f1 = F1(TP, FP, TN, FN)
