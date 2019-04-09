@@ -108,3 +108,30 @@ Parallelism for K-Means is relatively simple and easy to implement. Adapt
 it to use with Map Reduce
 
 Lab: talked about report setup, then worked on project
+
+4/9/2019:
+General Optimization problem(s)
+-Continuous vs discrete parameters
+-Optimization methods like newton's method, gradient descent, stochastic
+gradient descent
+-Lots of optimization inspired by nature. People try to write optimization
+algorithms based on the behavior of many many species
+-Humans naturally do optimization when learning, doing tasks, etc
+-You can model a lot of optimization problems using particles/physics
+-Greedy algorithm = one that uses iterations, each one makes most obvious
+minization step (greedy step). This prioritizes short term optima, not
+always global optima
+-Distances in Funny Spaces (recommender systems great example)
+-In CS/AI/math, a heuristic is a technique to quickly solve a problem
+for which classic methods are too slow. Used to find approximate solution
+by trading optimality, completeness, accuracy, and/or precision for speed
+-SVM: one of the most popular supervised classification algorithms 
+-SVM works well for real clusters, but not so much when "life is messy, and
+often life is messy"
+-Many updates/changes/optimizations to SVM
+-Fuzzy Clustering gives probabilities to be in certain clusters,
+so points can be in more than 1! Very different from the other
+methods we've discussed
+-Talked about hidden Markov Methods. Basically states w/transition
+probabilities. I think we talked about these in 221 and maybe applied
+some kind of reinforcement learning/reward thing to them (?)
