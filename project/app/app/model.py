@@ -6,7 +6,7 @@
 
 from read_data import read
 from split_data import split
-from sklearn import svm, utils
+from sklearn import svm, utils, preprocessing
 from joblib import dump
 from test_model import run_metrics_model, F1
 import os
@@ -169,3 +169,43 @@ def retrain_model(new_files):
     f_result.write("List of S-Cone indices: " + str(s_cone_list))
     f_result.write("<br /><br /><br />\n</body>\n</html>")
     f_result.close()
+
+def normalize():
+    
+    data = read("./data/data_151.csv")
+    data += read("./data/data_130.csv") + read("./data/data_53.csv")
+    
+    
+    features_training, labels_training, features_testing, labels_testing = split(data)
+    
+    print(labels_testing)
+
+    normalized_ftrain = preprocessing.normalize(features_training)
+    normalized_ftest = preprocessing.normalize(features_testing)
+
+    counter1 = 0
+    with open('normalize.txt', 'w') as f:
+        for item in normalized_ftrain:
+            f.write("%s " % counter1)
+            f.write("%s " % item[2])
+            f.write("%s " % item[5])
+            f.write("%s " % item[7])
+            f.write("%s " % int(labels_training[counter1]))
+            f.write("%s\n" % int(labels_training[counter1]))
+            
+            counter1 = counter1 + 1
+
+        counter2 = 0
+
+        for item in normalized_ftest:
+            f.write("%s " % (counter2 + counter1))
+            f.write("%s " % item[2])
+            f.write("%s " % item[5])
+            f.write("%s " % item[7])
+            f.write("%s " % int(labels_testing[counter2]))
+            f.write("%s\n" % int(labels_testing[counter2]))
+            counter2 = counter2 + 1
+            
+normalize()
+
+    
