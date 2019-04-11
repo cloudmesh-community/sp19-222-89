@@ -1,3 +1,5 @@
+| Brandon Fisher, Ryan Danehy | bfisch9@iu.edu, rdanehy@iu.edu | Indiana University| hid: sp:19-523-000 | github: ☁️ | code: ☁️
+
 ## Abstract
 
 This project was in partnership with Dr. Don Miller's lab from the IU School of Optometry, and the goal of the project is to create a binary classifier which is trained to differentiate (and generate a count of) S-cones from L and M cones in 3D retinal imaging. We deployed an RBF-kernel SVM to classify S-cones vs non-S-cones. This project has clinical significance in the tracking of progression of the disease Retinitis Pigmentosa (RP). In RP, S-cones can be seen migrating from their natural positions, and eventually disappearing entirely in retinal scans. Our service could be extended from purely classifying/counting S-cones to tracking the rate of their movement and determining the progression/severity of the disease in a given patient.
