@@ -206,6 +206,6 @@ def normalize():
             f.write("%s\n" % int(labels_testing[counter2]))
             counter2 = counter2 + 1
             
-normalize()
+#normalize()
 
     

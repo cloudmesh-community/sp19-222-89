@@ -28,4 +28,4 @@ def run_model(fpath):
     #run prediction on every data point given, return resultant list
     #of classifications
     answer = svm_model.predict(input_formatted) 
-    return answer
+    return answer, input_formatted
