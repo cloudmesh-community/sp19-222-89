@@ -39,7 +39,7 @@ def first_model():
 
     #svm_model=read_model_from_file()
 
-    TP, FP, TN, FN = run_metrics_model(svm_model, features_testing, labels_testing)
+    TP, FP, TN, FN = run_metrics_model(svm_model ,  features_testing , labels_testing)
     f1 = F1(TP, FP, TN, FN)
     return f1
 
