@@ -1,6 +1,5 @@
-#this file will serve to generate the initial model, and could be retooled
-#to serve as a model "updater", i.e. generating a new model any time
-#we gain access to a new labeled data set
+#this file contains functions to generate a first model (primarily for testing
+# purposes) and new models each time a new dataset is upload to be trained with
 #It also saves the model to a file so that we don't have to regenerate
 #the model each time we want to use it to classify new data
 
