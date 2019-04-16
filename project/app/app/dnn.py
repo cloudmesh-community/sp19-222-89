@@ -44,4 +44,4 @@ def cnn():
 
    f1 = F1(TP, FP, TN, FN)
    print('f1:' , f1)
-cnn()
+#cnn()
