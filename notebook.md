@@ -135,3 +135,11 @@ methods we've discussed
 -Talked about hidden Markov Methods. Basically states w/transition
 probabilities. I think we talked about these in 221 and maybe applied
 some kind of reinforcement learning/reward thing to them (?)
+
+4/16/2019:
+-Reviewed the overall structure of our project/things we've covered as
+a part of creating the project
+-Python: .py files, "scripts"
+-Packaging: __init__.py important, tells python to interpret a directory containing
+a .py file as a module
+-Docker: 
