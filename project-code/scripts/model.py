@@ -16,12 +16,12 @@ def first_model():
     #We're going to keep track of the model # and files used
     #to train it in a file called list.txt, which will reside
     #in our data subdirectory
-    flist = open("./data/list.txt", "w")
+    flist = open("../data/list.txt", "w")
     flist.write("data_151.csv\ndata_130.csv\ndata_53.csv\n")
     flist.close
 
-    data = read("data_151.csv")
-    data += read("data_130.csv") + read("data_53.csv")
+    data = read("../data/data_151.csv")
+    data += read("../data/data_130.csv") + read("../data/data_53.csv")
 
     #Shuffle order of feature/label vectors within array.
     #Does not change the order of values within the vectors
@@ -52,13 +52,13 @@ def retrain_model(new_files):
     indices = []
 
     #open list.txt, add newest filename to the end
-    flist = open("./data/list.txt", "a")
+    flist = open("../data/list.txt", "a")
     for file in new_files:
         flist.write(file + "\n")
     flist.close
 
     #open list.txt file, read all of its lines into list lines
-    with open("./data/list.txt") as flist:
+    with open("../data/list.txt") as flist:
         lines = flist.readlines()
 
     #Pull this case out of the for loop because we need to create data
@@ -75,7 +75,7 @@ def retrain_model(new_files):
     #directory, and need to reference that with ./data
     for i in range(1,len(lines)):
         lines[i] = lines[i].rstrip()
-        new = read("./data/" + lines[i])
+        new = read("../data/" + lines[i])
 
         #add the newly read in data to our data list
         data += new
@@ -126,12 +126,12 @@ def retrain_model(new_files):
             s_cone_list.append(i)
 
     #Erase what's already in the file
-    f_result = open("./templates/complete_retrain.html", "w")
+    f_result = open("../templates/complete_retrain.html", "w")
     f_result.write("")
     f_result.close
 
     #Now fill it with what we want
-    f_result = open("./templates/complete_retrain.html", "a")
+    f_result = open("../templates/complete_retrain.html", "a")
     f_result.write("<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n\t<meta charset=\"UTF-8\">\n\t<title>Title</title>\n</head>\n<body>")
     
     f_result.write(
@@ -172,8 +172,8 @@ def retrain_model(new_files):
 
 def normalize():
     
-    data = read("./data/data_151.csv")
-    data += read("./data/data_130.csv") + read("./data/data_53.csv")
+    data = read("../data/data_151.csv")
+    data += read("../data/data_130.csv") + read("../data/data_53.csv")
     
     
     features_training, labels_training, features_testing, labels_testing = split(data)

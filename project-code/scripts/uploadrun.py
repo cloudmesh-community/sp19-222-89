@@ -11,7 +11,7 @@ def upload():
     s_cone_indices = {}
     s_count  = 0
     APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-    target = os.path.join(APP_ROOT, 'data/')
+    target = os.path.join(APP_ROOT, '../data/')
 
     if not os.path.isdir(target):
         os.mkdir(target)

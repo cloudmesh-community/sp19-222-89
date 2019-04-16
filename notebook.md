@@ -135,3 +135,25 @@ methods we've discussed
 -Talked about hidden Markov Methods. Basically states w/transition
 probabilities. I think we talked about these in 221 and maybe applied
 some kind of reinforcement learning/reward thing to them (?)
+
+4/16/2019:
+-Reviewed the overall structure of our project/things we've covered as
+a part of creating the project
+-Python: .py files, "scripts"
+-Packaging: __init__.py important, tells python to interpret a directory containing
+a .py file as a module
+-Docker: need OS, need to update it, get python3, get our github repo,
+change working directory, pip install -r requirements.txt, expose
+port we want to use, run using -p port:port
+
+*********Need a makefile!!!!***************
+ 
+docker build -t docker_example:latest .
+-t lets us specify the name
+
+docker run -i -t -p 5000:5000 tag_name /bin/bash
+-i gives terminal to let us actually enter a container 
+-p defines port
+tag_name is what we named it in the docker build line
+
+
