@@ -10,7 +10,7 @@
 
 ---
 
-Keywords: Gun Violence, Scikit, Fbprophet, Decision Tree, KNN, Random Forest
+Keywords: S-cones, Scikit, Support Vect Machine, Neural Network, WebPlotViz, ISOS (Inner Segment - Outer Segment junction), Cone Outer segment tip (COST).
 
 ---
 
