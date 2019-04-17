@@ -5,3 +5,8 @@ owner:
    hid: sp19-222-89
    community: e222
    semester: sp19
+project:
+  - title: "Eye cones"
+    url: "https://github.com/cloudmesh-community/sp19-222-89/blob/master/project-report/report.md"
+    code: "https://github.com/cloudmesh-community/sp19-222-89/blob/master/project-code"
+    keywords: "eyes"
