@@ -1,7 +1,8 @@
 import os
 from flask import Flask, render_template, request
-from run_model import run_model
-from model import retrain_model
+import scripts
+from scripts.run_model import run_model
+from scripts.model import retrain_model
 
 def display():
     return render_template("upload_retrain.html")

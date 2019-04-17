@@ -1,9 +1,10 @@
 #This function will run the model and return a list of the labels
 #assigned to the given feature sets.
 from joblib import dump, load
-from read_data import read
+import scripts 
+from scripts.read_data import read
 import numpy as np
-from split_data import format
+from scripts.split_data import format
 from flask import jsonify, request
 
 def run_model(fpath):

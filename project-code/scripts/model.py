@@ -3,11 +3,12 @@
 #It also saves the model to a file so that we don't have to regenerate
 #the model each time we want to use it to classify new data
 
-from read_data import read
-from split_data import split
+import scripts
+from scripts.read_data import read
+from scripts.split_data import split
 from sklearn import svm, utils, preprocessing
 from joblib import dump
-from test_model import run_metrics_model, F1
+from scripts.test_model import run_metrics_model, F1
 
 import os
 
