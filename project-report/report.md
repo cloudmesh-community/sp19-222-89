@@ -1,6 +1,19 @@
 # This is where my title is missing
 
-| Brandon Fisher, Ryan Danehy | bfisch9@iu.edu, rdanehy@iu.edu | Indiana University| hid: sp19-222-89 , sp19-222-102 | github: ☁️ | code: ☁️
+
+| Brandon Fisher, Ryan Danehy
+| bfisch9@iu.edu, rdanehy@iu.edu
+| Indiana University Bloomington
+| hid: hid: sp19-222-89 sp19-222-102
+| github: [:cloud:](https://github.com/cloudmesh-community/sp19-222-89/tree/master/project-report/report.md)
+| code: [:cloud:](https://github.com/cloudmesh-community/sp19-222-89/tree/master/project-code)
+
+---
+
+Keywords: Gun Violence, Scikit, Fbprophet, Decision Tree, KNN, Random Forest
+
+---
+
 
 ## Abstract
 
