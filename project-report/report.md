@@ -1,3 +1,5 @@
+# This is where my title is missing
+
 | Brandon Fisher, Ryan Danehy | bfisch9@iu.edu, rdanehy@iu.edu | Indiana University| hid: sp19-222-89 , sp19-222-102 | github: ☁️ | code: ☁️
 
 ## Abstract
