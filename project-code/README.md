@@ -1,7 +1,7 @@
 To run this code:
 download dockerfile
 <br>
-Then run the following commands int he terminal:
+Then run the following commands in the terminal:
 <br>
 docker build -t service_test:latest .
 <br>
