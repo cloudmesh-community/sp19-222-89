@@ -30,5 +30,5 @@ Our data includes 8 features: X-Coordinate, Y-Coordinate, ISOS_Z, ISOS_size_X, I
 
 We visualized our data using WebPlotViz which results can be seen using the following link. https://spidal-gw.dsc.soic.indiana.edu/dashboard 
 
-SInce being a classification problem as well as our data being clustered in irregular form we decided that an SVM and or Neurl Network would be the best best model to use. 
+Since being a classification problem as well as our data being clustered in irregular form we decided that an SVM and or Neurl Network would be the best best model to use. 
 
