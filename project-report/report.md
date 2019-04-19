@@ -34,6 +34,10 @@ Figure: https://www.ncbi.nlm.nih.gov/books/NBK11059/figure/A766/?report=objecton
 Individual cones are entirely color blind in that their response is simply a reflection of the number of photons they capture, regardless of the wavelength of the photon. It is impossible, therefore, to determine why a change in the effectiveness of a particular cone occurred. This question can only be resolved by comparing the activity in different classes of cones. Comparisons of the responses of individual cone cells, and cells at higher levels in the visual pathway are clearly involved in how the visual system extracts color information from spectral stimuli. Despite these insights, understanding of the neural mechanisms that underlie color perception has been elusive to the scientific community. 
 https://www.ncbi.nlm.nih.gov/books/NBK11059/
 
+Figure:Cone_mosiac
+caption:"This diagram was produced based on histological sections from a human eye to determine the density of the cones. The diagram represents an area of about 1° of visual angle. The number of S-cones was set to 7% based on estimates from previous studies. The L-cone:M-cone ratio was set to 1.5. This is a reasonable number considering that recent studies have shown wide ranges of cone ratios in people with normal color vision. In the central fovea an area of approximately 0.34° is S-cone free. The S-cones are semi-regularly distributed and the M- and L-cones are randomly distributed. Throughout the whole retina the ratio of L- and M- cones to S-cones is about 100:1." - https://www.cis.rit.edu/people/faculty/montag/vandplite/pages/chap_9/ch9p1.html
+
+
 There are two main reflection sites inside the cone photoreceptor cells that line the back of the eye. The first one occurs at what is called the inner segment – outer segment junction (ISOS) and the second one (which occurs directly behind the first one) occurs at what is called the cone outer segment tip (COST). Cones can be classfied by the comparison of the inner segment length vs outer segment length. For example histologically S-cones have a longer inner segment and a shorter outer segment. 
 
 The ultimate goal of this project was to design an effective and fast method of classification of S-cones ultizing Machine Learning and REST Services. 
@@ -45,4 +49,8 @@ Our data includes 8 features: X-Coordinate, Y-Coordinate, ISOS_Z, ISOS_size_X, I
 
 We visualized our data using WebPlotViz which results can be seen using the following link. https://spidal-gw.dsc.soic.indiana.edu/dashboard 
 
-Since being a classification problem as well as our data being clustered in irregular form we decided that an SVM and or Neurl Network would be the best best model to use. 
+From the WebPlotViz visualizations it can be noted that the data is not clearly seperated into clusters nor in a regular shape. It also imporant to notice how there is no clear distiniction on which features are weighted heaviler then others in classifying S-cone from M and L-cones. However, histologically studies have shown that the biggest differentiation betwen the different cones types is the difference between ISOS_Z - COST_Z. This difference siginifes the physical length of an important component of the cone photoreceptors. In one of the plot we plotted X_coordinate vs Y-coordniate vs (COST_Z- ISOS_Z). In this plot it is not glarily obvious that (COST_Z- ISOS_Z) is the most imporant feature, but there does seem to be slight a correlation. The lack of an obviously dominant feature led us to the conclusion that for our model to train the best no weights should be applied. 
+
+
+##Model Discussion
+Datasets that are not in clear clusters tend to perform poorly in clustering techinques. 
