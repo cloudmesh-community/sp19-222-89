@@ -27,11 +27,11 @@ Datasets were provided by Dr. Miller's lab which included the 3D coordinates and
 After the initial model is trained, unlabeled data can be given for classification via rest service, and the count of S-cones will be returned via another rest service. Our service also allows the retraining of the model on new datasets, and then outputs the corresponding metrics on the newly trained model. This will allow our algorithms to be updated and improved upon as more data becomes available. 
 
 ## Basic Science
-Cones or Cone cells are photorecptor cells in the retinas of humans. They are responsible for color vison and work best in bright lights. S-cone cells differ from M-cones, and L-cones based on the light wavelengths they are senstiive to. For example S-cones are sensitive to short-wavelengths, M-cones to medium-wavelengths, and L-cones to Long-wavelengths.  https://www.ncbi.nlm.nih.gov/pubmed/12675479. short-wavelengths correspond with 'blue', medium with 'green', and long with 'red'. Therefore its believed that the study of these cones could lead to new insights into dieseases such as red-green colorblindness.
+Cones or Cone cells are photorecptor cells in the retinas of humans. They are responsible for color vison and work best in bright lights. S-cone cells differ from M-cones, and L-cones based on the light wavelengths they are senstive to. For example S-cones are sensitive to short-wavelengths, M-cones to medium-wavelengths, and L-cones to Long-wavelengths.  https://www.ncbi.nlm.nih.gov/pubmed/12675479. Short-wavelengths correspond with 'blue', medium with 'green', and long with 'red'. Therefore it is believed that the study of these cones could lead to new insights into dieseases such as red-green colorblindness.
 
 Figure: https://www.ncbi.nlm.nih.gov/books/NBK11059/figure/A766/?report=objectonly
 
-Individual cones are entirely color blind in that their response is simply a reflection of the number of photons they capture, regardless of the wavelength of the photon. It is impossible, therefore, to determine why a change in the effectiveness of a particular cone occurred. This question can only be resolved by comparing the activity in different classes of cones. Comparisons of the responses of individual cone cells, and cells at higher levels in the visual pathway are clearly involved in how the visual system extracts color information from spectral stimuli. Despite these insights, understanding of the neural mechanisms that underlie color perception has been elusive to the scientific community. 
+Individual cones are entirely color blind in that their response is simply a reflection of the number of photons they capture, regardless of the wavelength of the photon. It is impossible, therefore, to determine why a change in the effectiveness of a particular cone occurred. This question can only be resolved by comparing the activity in different classes of cones. Comparisons of the responses of individual cone cells, and cells at higher levels in the visual pathway are clearly involved in how the visual system extracts color information from spectral stimuli. However, understanding of the neural mechanisms that underlie color perception has been elusive to the scientific community. 
 https://www.ncbi.nlm.nih.gov/books/NBK11059/
 
 Figure:Cone_mosiac
@@ -43,14 +43,25 @@ There are two main reflection sites inside the cone photoreceptor cells that lin
 The ultimate goal of this project was to design an effective and fast method of classification of S-cones ultizing Machine Learning and REST Services. 
 
 ## Data
-The data we used was from 3 different undisclosed/anonymous patients. We will given the data by Dr. Millers group and was provided no data that could jeopadize the patients anonymity nor were we given any personal data that could or would put a patient's privacy in concern. 
+The data we used was from 3 different undisclosed/anonymous patients. We were given data by Dr. Millers group and was provided no data that could jeopadize the patients anonymity nor were we given any personal data that could or would put a patient's privacy in concern. 
 
 Our data includes 8 features: X-Coordinate, Y-Coordinate, ISOS_Z, ISOS_size_X, ISOS_size_x, COST_z, COST_X , and COST_y. These features were extracted from 3D imaging of the retinal hence the three dimensional parameter types. ISOS_z is the retinal depth location of ISOS and COST_z is the retinal depth location of COST. 
 
+Our raw data had some observances that were unknown or missing certain datapoints. We preproccessed the data in order to exclude those unknown or incomplete observances. The preproccessing that we performed on the data can be seen in the read_data.py file.  
+
+Machine learning models can be very sensitive to scaling and in order to prevent this we normalized the data. Normalization rescales the data to be in the range of 0 to 1. Thus eliminating any possible feature scaling within our data. We performed normalization on our data using Scikit learn's preprocessing.normalize() function. This function scales the input indivudally to unit norms(vector length). 
+
+In order to guarantee the quality of our data before training a model, we standardized our data. Standardization transforms data to have a mean of zero and standard deviation of 1. Standardization was performed by using scikit learn's StandardScaler(). 
+Both normlization and Standardization can be seen in the file dnn.py
+
+
 We visualized our data using WebPlotViz which results can be seen using the following link. https://spidal-gw.dsc.soic.indiana.edu/dashboard 
 
-From the WebPlotViz visualizations it can be noted that the data is not clearly seperated into clusters nor in a regular shape. It also imporant to notice how there is no clear distiniction on which features are weighted heaviler then others in classifying S-cone from M and L-cones. However, histologically studies have shown that the biggest differentiation betwen the different cones types is the difference between ISOS_Z - COST_Z. This difference siginifes the physical length of an important component of the cone photoreceptors. In one of the plot we plotted X_coordinate vs Y-coordniate vs (COST_Z- ISOS_Z). In this plot it is not glarily obvious that (COST_Z- ISOS_Z) is the most imporant feature, but there does seem to be slight a correlation. The lack of an obviously dominant feature led us to the conclusion that for our model to train the best no weights should be applied. 
+From the WebPlotViz visualizations it can be noted that the data is not clearly seperated into clusters nor in a regular shape. It also imporant to notice how there is no clear distiniction on which features are weighted heaviler then others in classifying S-cone from M and L-cones. However, histological studies have shown that the biggest differentiation betwen the different cones types is the difference between ISOS_Z - COST_Z. This difference siginifes the physical length of an important component of the cone photoreceptors. In one of the visulizations we plotted X_coordinate vs Y-coordniate vs (COST_Z- ISOS_Z). In this plot it is not glarily obvious that (COST_Z- ISOS_Z) is the most imporant feature, but there does seem to be a slight correlation. The lack of an obviously dominant feature led us to the conclusion that for our model to train the best no weights should be applied.
+
+
 
 
 ##Model Discussion
-Datasets that are not in clear clusters tend to perform poorly in clustering techinques. 
+In our final project we decided to use a neural network using scikit learn's MLPClassifier(). We had several reason for picking neural networks one being the fact that it is supervised learning. Supervised learning make sense for our project because we were given labels for every cell observed. Supervised also made sense given that our goal was to predict the type of cone for a given cell, and making predictions is usually the goal behind supervised learning algorithms. 
+
