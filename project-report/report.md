@@ -62,6 +62,6 @@ From the WebPlotViz visualizations it can be noted that the data is not clearly 
 
 
 
-##Model Discussion
+## Model Discussion
 In our final project we decided to use a neural network using scikit learn's MLPClassifier(). We had several reason for picking neural networks one being the fact that it is supervised learning. Supervised learning make sense for our project because we were given labels for every cell observed. Supervised also made sense given that our goal was to predict the type of cone for a given cell, and making predictions is usually the goal behind supervised learning algorithms. 
 
