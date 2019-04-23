@@ -33,15 +33,33 @@ def first_model():
     #turns the python list data into a numpy array in this process
     features_training, labels_training, features_testing, labels_testing = split(data)
 
-    #create SVM model
-    svm_model = svm.SVC(max_iter = 10000, kernel='rbf', gamma = 'auto'  )
-    svm_model.fit(features_training, labels_training.ravel())
+    #Normalize training and testing features
+    normalized_ftrain = preprocessing.normalize(NNfeatures_training)
+    normalized_ftest = preprocessing.normalize(NNfeatures_testing)
 
-    dump(svm_model, './model_files/newmodel.joblib')
+    #Standardize the normalized training and testing features
+    scaler = StandardScaler()
+    scaler.fit(normalized_ftrain)
+    x_train = scaler.transform(normalized_ftrain)
+    x_test = scaler.transform(normalized_ftest)
+
+    #create dnn model
+    dnn = MLPClassifier(activation= 'tanh', solver = 'lbfgs')
+
+    #Fit model with normalized+standardized data and training labels
+    dnn.fit(x_train, labels_training)
+
+######################Code below is left over from when we used SVM######
+    """create SVM model
+    svm_model = svm.SVC(max_iter = 10000, kernel='rbf', gamma = 'auto'  )
+    svm_model.fit(features_training, labels_training.ravel())"""
+
+    #Save model
+    dump(dnn, './model_files/newmodeldnn.joblib')
 
     #svm_model=read_model_from_file()
 
-    TP, FP, TN, FN, mp = run_metrics_model(svm_model ,  features_testing , labels_testing)
+    TP, FP, TN, FN, mp = run_metrics_model(dnn ,  x_test , labels_testing)
     f1 = F1(TP, FP, TN, FN)
     return f1
 
@@ -95,21 +113,33 @@ def retrain_model(new_files):
     #turns the python list data into a numpy array in this process
     features_training, labels_training, features_testing, labels_testing = split(data)
 
-    #create SVC model
-    svm_model = svm.SVC(max_iter = 10000, kernel='rbf', gamma = 'auto'  )
-    svm_model.fit(features_training, labels_training.ravel())
+    #Normalize training and testing data
+    normalized_ftrain = preprocessing.normalize(NNfeatures_training)
+    normalized_ftest = preprocessing.normalize(NNfeatures_testing)
+
+    #Standardize training and testing data
+    scaler = StandardScaler()
+    scaler.fit(normalized_ftrain)
+    x_train = scaler.transform(normalized_ftrain)
+    x_test = scaler.transform(normalized_ftest)
+
+    #Create model
+    dnn = MLPClassifier(activation= 'tanh', solver = 'lbfgs')
+
+    #Fit model
+    dnn.fit(x_train, labels_training)
 
     #delete oldmodel.joblib, set current newmodel.joblib to old
     #then save new as newmodel.joblib
     try:
-        os.remove("./model_files/oldmodel.joblib")
+        os.remove("./model_files/oldmodeldnn.joblib")
     except:
-        print("no oldmodel")
-    os.rename("./model_files/newmodel.joblib", "./model_files/oldmodel.joblib")
+        print("no oldmodeldnn")
+    os.rename("./model_files/newmodeldnn.joblib", "./model_files/oldmodeldnn.joblib")
 
-    dump(svm_model, "./model_files/newmodel.joblib")
+    dump(dnn, "./model_files/newmodeldnn.joblib")
 
-    TP, FP, TN, FN, predictions = run_metrics_model(svm_model, features_testing, labels_testing)
+    TP, FP, TN, FN, predictions = run_metrics_model(dnn, x_test, labels_testing)
     f1 = F1(TP, FP, TN, FN)
     
     #Create list to hold csv index of each s_cone we find
