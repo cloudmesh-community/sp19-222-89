@@ -10,15 +10,15 @@ import os
 import numpy as np
 
 def cnn():
-   NNdata = read("./data/data_130.csv") + read("./data/data_53.csv") + read("./data/data_151.csv")
+   NNdata = read("../data/data_130.csv") + read("../data/data_53.csv") + read("../data/data_151.csv")
 
    utils.shuffle(NNdata)
 
    NNfeatures_training, NNlabels_training, NNfeatures_testing, NNlabels_testing = split(NNdata)
 
    # sgd in general f1 = 0
-   #relu and lbfgs f1 = .5
-   #tanh and lbfgs f1 = .6875
+   #relu and lbfgs f1 = .93-.90
+   #tanh and lbfgs f1 = .93 -.98
    #logistics and lbfgs f1 = .5762
    
 
@@ -44,4 +44,4 @@ def cnn():
 
    f1 = F1(TP, FP, TN, FN)
    print('f1:' , f1)
-#cnn()
+cnn()
