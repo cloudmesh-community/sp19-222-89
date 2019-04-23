@@ -1,10 +1,4 @@
-data_151.csv
-data_130.csv
-data_53.csv
-data_99.csv
-data_99.csv
-data_99.csv
-data_99.csv
-data_99.csv
-data_99.csv
-data_98.csv
+./data/data_151.csv
+./data/data_130.csv
+./data/data_53.csv
+
