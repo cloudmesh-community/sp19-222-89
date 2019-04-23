@@ -273,7 +273,7 @@ def retrain_model(new_files):
     f_result.write("<br /><br /><br />\n</body>\n</html>")
     f_result.close()
 
-def normalize():
+"""def normalize():
     
     #read in the data
     data = read("./data/data_151.csv")
@@ -313,6 +313,6 @@ def normalize():
             f.write("%s\n" % int(labels_testing[counter2]))
             counter2 = counter2 + 1
             
-normalize()
+normalize()"""
 
     
