@@ -4,6 +4,8 @@
 #the model each time we want to use it to classify new data
 
 from sklearn import svm, utils, preprocessing
+from sklearn.preprocessing import StandardScaler 
+from sklearn.neural_network import MLPClassifier
 from joblib import dump
 import numpy as np
 import scripts
@@ -104,18 +106,31 @@ def retrain_model(new_files):
         #append new list of indices to our list, using new this time
         indices.append(np.arange(0,len(new)))
 
+    data_reformat = []
+    indices_reformat = []
+
+    for i in range(len(indices)):
+        for j in range(len(indices[i])):
+            indices_reformat.append(indices[i][j])
+
+    """print("length of data: " + str(len(data)) + "\n")
+    print("length of indices: " + str(len(indices)) + "\n")
+    print("length of reformatted data: " + str(len(data_reformat)) + "\n")
+    print("length of reformatted indices: " + str(len(indices_reformat)) + "\n")
+    return"""
+
     #Shuffle the data before splitting. This function will move the
     #individual feature/label vectors around, but will not change
     #the order of the values inside these vectors
-    utils.shuffle(data, indices)
+    utils.shuffle(data, indices_reformat)
     
     #data is split into training and testing sets. The split function
     #turns the python list data into a numpy array in this process
     features_training, labels_training, features_testing, labels_testing = split(data)
 
     #Normalize training and testing data
-    normalized_ftrain = preprocessing.normalize(NNfeatures_training)
-    normalized_ftest = preprocessing.normalize(NNfeatures_testing)
+    normalized_ftrain = preprocessing.normalize(features_training)
+    normalized_ftest = preprocessing.normalize(features_testing)
 
     #Standardize training and testing data
     scaler = StandardScaler()
