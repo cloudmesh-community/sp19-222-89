@@ -11,7 +11,7 @@ def run_model(fpath):
 
     #reload svm model from file
     #need to choose latest model
-    svm_model = load('newmodel.joblib')
+    svm_model = load('./scripts/newmodel.joblib')
     
     #create list to hold final labels
     answer = []

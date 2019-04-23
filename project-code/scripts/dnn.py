@@ -1,6 +1,3 @@
-
-from read_data import read
-from split_data import split
 from sklearn import utils, preprocessing
 from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import StandardScaler  
@@ -8,6 +5,9 @@ from joblib import dump
 from test_model import run_metrics_model, F1
 import os
 import numpy as np
+import scripts
+from scripts.read_data import read
+from scripts.split_data import split
 
 def cnn():
    NNdata = read("./data/data_130.csv") + read("./data/data_53.csv") + read("./data/data_151.csv")

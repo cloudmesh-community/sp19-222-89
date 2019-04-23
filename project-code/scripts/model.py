@@ -3,25 +3,27 @@
 #It also saves the model to a file so that we don't have to regenerate
 #the model each time we want to use it to classify new data
 
-from read_data import read
-from split_data import split
 from sklearn import svm, utils, preprocessing
 from joblib import dump
-from test_model import run_metrics_model, F1
-
+import numpy as np
+import scripts
+from scripts.read_data import read
+from scripts.split_data import split
+from scripts.test_model import run_metrics_model, F1
 import os
+
 
 def first_model():
 
     #We're going to keep track of the model # and files used
     #to train it in a file called list.txt, which will reside
     #in our data subdirectory
-    flist = open("../data/list.txt", "w")
-    flist.write("data_151.csv\ndata_130.csv\ndata_53.csv\n")
+    flist = open("./data/list.txt", "w")
+    flist.write("./data/data_151.csv\n./data/data_130.csv\n./data/data_53.csv\n")
     flist.close
 
-    data = read("../data/data_151.csv")
-    data += read("../data/data_130.csv") + read("../data/data_53.csv")
+    data = read("./data/data_151.csv")
+    data += read("./data/data_130.csv") + read("./data/data_53.csv")
 
     #Shuffle order of feature/label vectors within array.
     #Does not change the order of values within the vectors
@@ -35,11 +37,11 @@ def first_model():
     svm_model = svm.SVC(max_iter = 10000, kernel='rbf', gamma = 'auto'  )
     svm_model.fit(features_training, labels_training.ravel())
 
-    dump(svm_model, 'newmodel.joblib')
+    dump(svm_model, './model_files/newmodel.joblib')
 
     #svm_model=read_model_from_file()
 
-    TP, FP, TN, FN = run_metrics_model(svm_model ,  features_testing , labels_testing)
+    TP, FP, TN, FN, mp = run_metrics_model(svm_model ,  features_testing , labels_testing)
     f1 = F1(TP, FP, TN, FN)
     return f1
 
@@ -49,16 +51,17 @@ def retrain_model(new_files):
     #from the csv through the shuffle operation below.
     #This will allow us to report later on which cells, by csv index,
     #were labeled as s-cones
+
     indices = []
 
     #open list.txt, add newest filename to the end
-    flist = open("../data/list.txt", "a")
+    flist = open("./data/list.txt", "a")
     for file in new_files:
-        flist.write(file + "\n")
+        flist.write("./data/" + file + "\n")
     flist.close
 
     #open list.txt file, read all of its lines into list lines
-    with open("../data/list.txt") as flist:
+    with open("./data/list.txt") as flist:
         lines = flist.readlines()
 
     #Pull this case out of the for loop because we need to create data
@@ -75,7 +78,7 @@ def retrain_model(new_files):
     #directory, and need to reference that with ./data
     for i in range(1,len(lines)):
         lines[i] = lines[i].rstrip()
-        new = read("../data/" + lines[i])
+        new = read(lines[i])
 
         #add the newly read in data to our data list
         data += new
@@ -99,12 +102,12 @@ def retrain_model(new_files):
     #delete oldmodel.joblib, set current newmodel.joblib to old
     #then save new as newmodel.joblib
     try:
-        os.remove("oldmodel.joblib")
+        os.remove("./model_files/oldmodel.joblib")
     except:
         print("no oldmodel")
-    os.rename("newmodel.joblib", "oldmodel.joblib")
+    os.rename("./model_files/newmodel.joblib", "./model_files/oldmodel.joblib")
 
-    dump(svm_model, "newmodel.joblib")
+    dump(svm_model, "./model_files/newmodel.joblib")
 
     TP, FP, TN, FN, predictions = run_metrics_model(svm_model, features_testing, labels_testing)
     f1 = F1(TP, FP, TN, FN)
@@ -126,12 +129,12 @@ def retrain_model(new_files):
             s_cone_list.append(i)
 
     #Erase what's already in the file
-    f_result = open("../templates/complete_retrain.html", "w")
+    f_result = open("./templates/complete_retrain.html", "w")
     f_result.write("")
     f_result.close
 
     #Now fill it with what we want
-    f_result = open("../templates/complete_retrain.html", "a")
+    f_result = open("./templates/complete_retrain.html", "a")
     f_result.write("<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n\t<meta charset=\"UTF-8\">\n\t<title>Title</title>\n</head>\n<body>")
     
     f_result.write(
@@ -173,8 +176,8 @@ def retrain_model(new_files):
 def normalize():
     
     #read in the data
-    data = read("../data/data_151.csv")
-    data += read("../data/data_130.csv") + read("../data/data_53.csv")
+    data = read("./data/data_151.csv")
+    data += read("./data/data_130.csv") + read("./data/data_53.csv")
     
     #split the data into training features, and testing datasets for training and validation testing
     features_training, labels_training, features_testing, labels_testing = split(data)
