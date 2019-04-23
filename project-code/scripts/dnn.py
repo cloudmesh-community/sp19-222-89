@@ -36,7 +36,7 @@ def cnn():
 
    cnn.fit(x_train, NNlabels_training)
 
-   dump(cnn, 'cnn_model.joblib')
+   dump(cnn, 'dnn_model.joblib')
    #cnn_model.joblib f1=1.0
    #cnn_modeltwo.joblib f1 = .98
 
