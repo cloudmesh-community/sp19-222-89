@@ -33,7 +33,7 @@ RUN pip install -r requirements.txt
 RUN pip install connexion[swagger-ui]
 
 
-EXPOSE 8080
+EXPOSE 4555
 
 RUN python server.py
 

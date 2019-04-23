@@ -32,7 +32,10 @@ def upload():
                 s_count +=1
                 s_cone_indices[file.filename].append(i)
                     
-        
+    #Get metrics of current model from ./model_files/metrics.txt
+    with open("./model_files/metrics.txt") as flist:
+        lines = flist.readlines()
+
     f_result = open("./templates/complete.html", "w")
     f_result.write("")
     f_result.close
@@ -86,7 +89,19 @@ def upload():
         f_result.write('</table>')
         table_count = 0
         ind += 1
-        
+    
+    #write model information to bottom
+    f_result.write("<br /><br /><br /><br /><br /><br />")
+    f_result.write("Current model is Deep Neural Network<br/>")
+    f_result.write("Current model made: " + str(lines[0].rstrip()) + "<br />")
+    f_result.write("True Positive: " + str(lines[1].rstrip()) + "<br />")
+    f_result.write("False Positive: " + str(lines[2].rstrip()) + "<br />")
+    f_result.write("True Negative: " + str(lines[3].rstrip()) + "<br />")
+    f_result.write("False Negative: " + str(lines[4].rstrip()) + "<br />")
+    f_result.write("F1: " + str(lines[5].rstrip()) + "<br />")
+    f_result.write("Accuracy: " + str(lines[6].rstrip()) + "<br />")
+    f_result.write("Precision: " + str(lines[7].rstrip()) + "<br />")
+    f_result.write("Recall: " + str(lines[7].rstrip()) + "<br />")
     f_result.write("<br /><br /><br />\n</body>\n</html>")
     f_result.close()
     

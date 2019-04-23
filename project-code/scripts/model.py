@@ -13,6 +13,7 @@ from scripts.read_data import read
 from scripts.split_data import split
 from scripts.test_model import run_metrics_model, F1
 import os
+import datetime
 
 
 def first_model():
@@ -144,6 +145,30 @@ def retrain_model(new_files):
     #Fit model
     dnn.fit(x_train, labels_training)
 
+    #use bool old_metrics to determine if we print this info
+    #into html later. In the event we don't have a metrics.txt
+    #we don't want it to break (ie the first time its run). 
+    #This will catch that
+    old_metrics = True
+    try:
+        #Before we delete oldmodel, get its specs
+        with open("./model_files/metrics.txt") as flist:
+            old_model_metrics_lines = flist.readlines()
+
+        #TP start at ind 1, FP, TN, FN, f1, acc, prec, rec
+        old_date_time = str(old_model_metrics_lines[0].rstrip())
+        old_TP = float(old_model_metrics_lines[1].rstrip())
+        old_FP = float(old_model_metrics_lines[2].rstrip())
+        old_TN = float(old_model_metrics_lines[3].rstrip())
+        old_FN = float(old_model_metrics_lines[4].rstrip())
+        old_f1 = float(old_model_metrics_lines[5].rstrip())
+        old_acc = float(old_model_metrics_lines[6].rstrip())
+        old_prec = float(old_model_metrics_lines[7].rstrip())
+        old_rec = float(old_model_metrics_lines[8].rstrip())
+    except:
+        print("no metrics for old model")
+        old_metrics = False
+
     #delete oldmodel.joblib, set current newmodel.joblib to old
     #then save new as newmodel.joblib
     try:
@@ -154,9 +179,22 @@ def retrain_model(new_files):
 
     dump(dnn, "./model_files/newmodeldnn.joblib")
 
+    #Get metrics info
     TP, FP, TN, FN, predictions = run_metrics_model(dnn, x_test, labels_testing)
     f1 = F1(TP, FP, TN, FN)
-    
+
+    acc = TP + TN / (TP + FP + TN + FN)
+    prec = TP/ (TP + FP)
+    rec = TP / (TP + FN)
+
+    #Save metrics information to file
+    flist = open("./model_files/metrics.txt", "w")
+    flist.write(str(datetime.datetime.now()) + "\n" + str(TP) + 
+        "\n" + str(FP) + "\n" + 
+        str(TN) + "\n" + str(FN) + "\n" + str(f1) + "\n" + 
+        str(acc) + "\n" + str(prec) + "\n" + str(rec))
+    flist.close
+
     #Create list to hold csv index of each s_cone we find
     s_cone_list = []
 
@@ -215,6 +253,23 @@ def retrain_model(new_files):
     )
     f_result.write("F1: " + str(f1) + "<br /><br /><br />")
     f_result.write("List of S-Cone indices: " + str(s_cone_list))
+    f_result.write("Accuracy: " + str(acc) + "<br />")
+    f_result.write("Precision: " + str(prec) + "<br />")
+    f_result.write("Recall: " + str(rec) + "<br />")
+
+    #TP start at ind 1, FP, TN, FN, f1, acc, prec, rec
+    if(old_metrics):
+        f_result.write("Previous model is Deep Neural Network<br/>")
+        f_result.write("Previous model made: " + old_date_time + "<br />")
+        f_result.write("Previous True Positive: " + str(old_TP) + "<br />")
+        f_result.write("Previous False Positive: " + str(old_FP) + "<br />")
+        f_result.write("Previous True Negative: " + str(old_TN) + "<br />")
+        f_result.write("Previous False Negative: " + str(old_FN) + "<br />")
+        f_result.write("Previous F1: " + str(old_f1) + "<br />")
+        f_result.write("Previous Accuracy: " + str(old_acc) + "<br />")
+        f_result.write("Previous Precision: " + str(old_prec) + "<br />")
+        f_result.write("Previous Recall: " + str(old_rec) + "<br />")
+
     f_result.write("<br /><br /><br />\n</body>\n</html>")
     f_result.close()
 
