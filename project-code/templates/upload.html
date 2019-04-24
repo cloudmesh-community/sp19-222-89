@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload</title>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+<body>
+
+<form id="upload-form-run" action="{{ url_for('/app.scripts_uploadrun_upload') }}" method="POST" enctype="multipart/form-data">
+
+    <strong>Files:</strong><br>
+    <input id="file-picker" type="file" name="file" accept=".csv" multiple>
+    <div id="msg"></div>
+    <input type="submit" value="Upload!" id="upload-button">
+</form>
+<br />
+<br />
+<br />
+</body>
+<script>
+    $("#file-picker").change(function(){
+        var input = document.getElementById('file-picker');
+        for (var i=0; i<input.files.length; i++)
+        {
+        //koala.jpg, koala.JPG substring(index) lastIndexOf('a') koala.1.jpg
+            var ext= input.files[i].name.substring(input.files[i].name.lastIndexOf('.')+1).toLowerCase()
+            if (ext == 'csv')
+            {
+                $("#msg").text("Files are supported")
+            }
+            else
+            {
+                $("#msg").text("Files are NOT supported")
+                document.getElementById("file-picker").value ="";
+            }
+        }
+    } );
+</script>
+<p>
+<br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br />
+Note: the data you upload must be a correctly formatted
+.csv file.
+<br />
+<br />
+It should be comprised of 8 or 9 columns (9 if the cone labels
+are included) and N+1 rows, where N is the number of cells
+that you are providing data for.
+<br />
+<br />
+Each column should contain the data for 1 feature. The set of 
+expected features are: Coord_x, Coord_y, ISOS_z, ISOS_Size_x, ISOS_Size_y, 
+COST_z, COST_Size_x, COST_Size_y
+<br />
+<br />
+Labels for cone type are expected to be integer values 1-3,
+with L=1, M=2, S=3. Anywhere a value is unknown, Nan should be
+entered.
+<br />
+</p>
+</html>
