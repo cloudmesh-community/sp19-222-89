@@ -37,8 +37,8 @@ def first_model():
     features_training, labels_training, features_testing, labels_testing = split(data)
 
     #Normalize training and testing features
-    normalized_ftrain = preprocessing.normalize(NNfeatures_training)
-    normalized_ftest = preprocessing.normalize(NNfeatures_testing)
+    normalized_ftrain = preprocessing.normalize(features_training)
+    normalized_ftest = preprocessing.normalize(features_testing)
 
     #Standardize the normalized training and testing features
     scaler = StandardScaler()
@@ -64,6 +64,17 @@ def first_model():
 
     TP, FP, TN, FN, mp = run_metrics_model(dnn ,  x_test , labels_testing)
     f1 = F1(TP, FP, TN, FN)
+    acc = (TP + TN) / (TP + FP + TN + FN)
+    prec = TP/ (TP + FP)
+    rec = TP / (TP + FN)
+
+    #Save metrics information to file
+    flist = open("./model_files/metrics.txt", "w")
+    flist.write(str(datetime.datetime.now()) + "\n" + str(TP) + 
+        "\n" + str(FP) + "\n" + 
+        str(TN) + "\n" + str(FN) + "\n" + str(f1) + "\n" + 
+        str(acc) + "\n" + str(prec) + "\n" + str(rec))
+    flist.close
     return f1
 
 def retrain_model(new_files):
@@ -173,17 +184,18 @@ def retrain_model(new_files):
     #then save new as newmodel.joblib
     try:
         os.remove("./model_files/oldmodeldnn.joblib")
+        os.remove("./model_files/old_metrics.txt")
     except:
         print("no oldmodeldnn")
     os.rename("./model_files/newmodeldnn.joblib", "./model_files/oldmodeldnn.joblib")
-
+    os.rename("./model_files/metrics.txt", "./model_files/old_metrics.txt")
     dump(dnn, "./model_files/newmodeldnn.joblib")
 
     #Get metrics info
     TP, FP, TN, FN, predictions = run_metrics_model(dnn, x_test, labels_testing)
     f1 = F1(TP, FP, TN, FN)
 
-    acc = TP + TN / (TP + FP + TN + FN)
+    acc = (TP + TN) / (TP + FP + TN + FN)
     prec = TP/ (TP + FP)
     rec = TP / (TP + FN)
 
