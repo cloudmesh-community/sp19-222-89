@@ -32,8 +32,6 @@ We worked in partnership with Dr. Don Miller's lab from the IU School of Optomet
 
 Datasets were provided by Dr. Miller's lab which included the 3D coordinates and aperture size of each cone detected within the retinal scan. Using this information, we were able to differentiate the S-cones from the others due to their deeper position and wider aperture compared to the other cell types. Our starting dataset includes information from the images of three patients' retinas, with a mix of healthy and colorblind individuals. Additional data was collected/requested as needed.
 
-:wave: are these spaces intentional?
-
 ### Something fun
 
 After the initial model is trained, unlabeled data can be given for classification via rest service, and the count and locations of S-cones will be returned via another rest service. Our service also allows the retraining of the model on new datasets, and then outputs the corresponding metrics on the newly trained model. This will allow our model to be updated and improved upon as more data becomes available. 
