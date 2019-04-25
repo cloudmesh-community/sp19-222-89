@@ -83,3 +83,6 @@ However, an F1 score of 1.0 is a possible symptom of an over-fitting problem. Ov
 
 When deciding to implement a multi-layer perceptron (neural network) it is imporant to consider and analzye what activation function will work best for your data solution. The types of activation functions have very imporant influences on the networks’ learning speeds, classification correct rates and non-linear mapping precision.
 
+## REST Service Implementations
+REST is 
+The interaction between client and server for this service involves the use of 3 yaml specified endpoints: /, /app/run, and /app/retrain. The '/' endpoint is a simple read action from the client, and a rendered html page with information about our service is returned to the client. The /app/run endpoint specifies another read action, and returns a rendered html template to the client which will allow a user to upload one or more .csv files containing data which they want classified. When the user clicks the upload button on this page, a create action is used

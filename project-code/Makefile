@@ -3,12 +3,12 @@ docker-all: docker-build docker-start
 
 docker-build:
 	@echo "building the image from docker file..."
-	docker build -t sp19-222-89/cone_counter:latest .
+	docker build --no-cache --pull -t sp19-222-89/cone_counter:latest .
 	@echo "image built"
 
 docker-start:
 	@echo "starting the service in container..."
-	docker run -i -t  -v -p 4555:4555 `pwd`:/project-code  sp19-222-89/cone_counter /bin/bash
+	docker run -v `pwd`/:/docker_save/ -p 4555:4555 sp19-222-89/cone_counter
 
 service:
 	@echo "creating the service..."
@@ -21,9 +21,14 @@ start:
 	pip install -r requirements.txt
 	python server.py
 
+docker-save:
+	@echo "saving data from container to local machine"
+	sudo docker cp $$(docker ps -alq):/sp19-222-89/project-code ./docker_save	
+	@echo "done saving data"
+
 docker-stop:
 	@echo "stopping the service"
-	docker stop $$(docker ps-alq)
+	docker stop $$(docker ps -alq)
 	@echo "service stopped"
 
 docker-remove:
@@ -31,7 +36,7 @@ docker-remove:
 	docker rmi -f sp19-222-89/cone_counter
 	@echo "image removed"
 
-docker-clean: docker-stop docker-remove
+docker-clean: docker-save docker-stop docker-remove
 	@echo "docker service stopped and image removed"
 
 clean:
