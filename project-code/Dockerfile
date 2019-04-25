@@ -26,6 +26,8 @@ RUN pip install psutil
 
 RUN git clone https://github.com/cloudmesh-community/sp19-222-89
 
+RUN cd .. git pull 
+
 WORKDIR /sp19-222-89/project-code
 
 RUN pip install --upgrade pip
@@ -35,7 +37,9 @@ RUN pip install connexion[swagger-ui]
 
 EXPOSE 4555
 
-RUN python server.py
+CMD ["make", "start"]
+
+
 
 
 
