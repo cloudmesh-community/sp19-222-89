@@ -69,6 +69,8 @@ We visualized our data using WebPlotViz which results can be seen using the foll
 From the WebPlotViz visualizations it can be noted that the data is not clearly seperated into clusters nor in a regular shape. It also imporant to notice how there is no clear distiniction on which features are weighted heaviler than others in classifying S-cone from M and L-cones. However, histological studies have shown that the biggest differentiation betwen the different cones types is the difference between ISOS_Z - COST_Z @structure. This difference siginifes the physical length of an important component of the cone photoreceptors. In one of the visualizations we plotted X_coordinate vs Y-coordinate vs (COST_Z- ISOS_Z). In this plot it is not glaringly obvious that (COST_Z- ISOS_Z) is the most imporant feature, but there does seem to be a noticeable correlation. The lack of an obviously dominant feature led us to the conclusion that for our model to train the best no weights should be applied (*Not sure that's accurate, I think DNN will always give weights*)
 
 
+:wave: a table to put your eight features in may be reasonable 
+
 
 ## Model Discussion
 In our final project we decided to use a neural network using scikit learn's MLPClassifier(). We had several reason for picking neural networks, one being the fact that it is supervised learning. Supervised learning make sense for our project because in our training data we were given labels for every cell observed. Supervised learning also made sense given that our goal was to predict the type of cone for a given cell, and making predictions is usually the goal behind supervised learning algorithms. 
