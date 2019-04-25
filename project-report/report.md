@@ -83,7 +83,11 @@ We started out trying to use a support vector machine algorithm (SVM) as our mod
 
 ![RBF Kernel example](images/rbf_kernel_pic.png){#fig:RBF_Kernel}
 
-However, an F1 score of 1.0 is a possible symptom of an over-fitting problem. Over-fitting is when an algorithm matches so perfectly to the training data that the model does not generalize well to classification of additional datasets. ![Overfitting example](images/Overfitting.png){#fig:Overfitting} To determine whether there is overfitting or not we decided to decrease the amount of data used for training. Decreasing the amount of data used for training should only slightly decrease the performance of the model unless there is overfitting. If there was overfitting then they would be a drastic difference since they would be less data to fit perfectly too. We trained with roughly 60% of the data rather than 80%. The new model that was trained with 60% of the data performed horribly, confirming the overfitting problem. Thus we decided to move on to the implementation of a neural network.
+However, an F1 score of 1.0 is a possible symptom of an over-fitting problem. Over-fitting is when an algorithm matches so perfectly to the training data that the model does not generalize well to classification of additional datasets. 
+
+![Overfitting example](images/Overfitting.png){#fig:Overfitting} 
+
+To determine whether there is overfitting or not we decided to decrease the amount of data used for training. Decreasing the amount of data used for training should only slightly decrease the performance of the model unless there is overfitting. If there was overfitting then they would be a drastic difference since they would be less data to fit perfectly too. We trained with roughly 60% of the data rather than 80%. The new model that was trained with 60% of the data performed horribly, confirming the overfitting problem. Thus we decided to move on to the implementation of a neural network.
 
 When deciding to implement a multi-layer perceptron (neural network) it is imporant to consider and analzye what activation function will work best for your data solution. The types of activation functions have very imporant influences on the networks’ learning speeds, classification correct rates and non-linear mapping precision.
 
