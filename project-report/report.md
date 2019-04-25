@@ -1,3 +1,9 @@
+:warning: in review 
+
+:wave: Overal very well done. Maybe a table to showcase some model parapmeters and results.
+
+:wave: we will take a look at a few things in class to make sure they are being displayed in the epub correctly 
+
 # S-cone Classification Using REST Services and Machine Learning
 
 
@@ -17,14 +23,16 @@ Keywords: S-cones, Scikit, Support Vect Machine, Neural Network, WebPlotViz, ISO
 
 ## Abstract
 
-We worked in partnership with Dr. Don Miller's lab from the IU School of Optometry, and the goal was to create a binary classifier which is trained to differentiate (and generate a count of) S-cones from L and M cones in 3D retinal imaging. We deployed an RBF-kernel SVM to classify S-cones vs non-S-cones. This project has clinical significance in the tracking of progression of the disease Retinitis Pigmentosa (RP). In RP, S-cones can be seen migrating from their natural positions, and eventually disappearing entirely in retinal scans. Our service could be extended from purely classifying/counting S-cones to tracking the rate of their movement and determining the progression/severity of the disease in a given patient.
+We worked in partnership with Dr. Don Miller's lab from the IU School of Optometry to create a binary classifier which is trained to differentiate (and generate a count of) S-cones from L and M cones in 3D retinal imaging. We deployed an RBF-kernel SVM to classify S-cones vs non-S-cones. This project has clinical significance in the tracking of progression of the disease Retinitis Pigmentosa (RP). In RP, S-cones can be seen migrating from their natural positions, and eventually disappearing entirely in retinal scans. Our service could be extended from purely classifying/counting S-cones to tracking the rate of their movement and determining the progression/severity of the disease in a given patient.
 
 
 ## Introduction
 
-Datasets were provided by Dr. Miller's lab which included the 3D coordinates and aperture size of each cone detected within the retinal scan. Using this information, we were able to differentiate the S-cones from the others due to their deeper position and wider aperture compared to the other cell types. Our starting dataset includes information from the images of 3 patients' retinas, with a mix of healthy and colorblind individuals. Additional data was collected/requested as needed.
+Datasets were provided by Dr. Miller's lab which included the 3D coordinates and aperture size of each cone detected within the retinal scan. Using this information, we were able to differentiate the S-cones from the others due to their deeper position and wider aperture compared to the other cell types. Our starting dataset includes information from the images of three patients' retinas, with a mix of healthy and colorblind individuals. Additional data was collected/requested as needed.
 
-After the initial model is trained, unlabeled data can be given for classification via rest service, and the count and locations of S-cones will be returned via another rest service. Our service also allows the retraining of the model on new datasets, and then outputs the corresponding metrics on the newly trained model. This will allow our algorithms to be updated and improved upon as more data becomes available. 
+:wave: are these spaces intentional?
+
+After the initial model is trained, unlabeled data can be given for classification via rest service, and the count and locations of S-cones will be returned via another rest service. Our service also allows the retraining of the model on new datasets, and then outputs the corresponding metrics on the newly trained model. This will allow our model to be updated and improved upon as more data becomes available. 
 
 ## Basic Science
 Cones or Cone cells are photoreceptor cells in the retinas of humans. They are responsible for color vison and work best in bright lights. S-cone cells differ from M-cones and L-cones based on the light wavelengths they are senstive to. For example, S-cones are sensitive to short-wavelengths, M-cones to medium-wavelengths, and L-cones to Long-wavelengths @Role. Short-wavelengths correspond with 'blue', medium with 'green', and long with 'red', therefore it is believed that the study of these cones could lead to new insights into dieseases such as red-green colorblindness.
@@ -33,7 +41,7 @@ Cones or Cone cells are photoreceptor cells in the retinas of humans. They are r
 
 Caption: Color vision. The absorption spectra of the four photopigments in the normal human retina. The solid curves indicate the three kinds of cone opsins; the dashed curve shows rod rhodopsin for comparison. Absorbance is defined as the log value of the intensity of incident light divided by intensity of transmitted light @Role.
 
-Individual cones are entirely color blind in that their response is simply a reflection of the number of photons they capture, regardless of the wavelength of the photon. It is impossible, therefore, to determine why a change in the effectiveness of a particular cone occurred. This question can only be resolved by comparing the activity in different classes of cones. Comparisons of the responses of individual cone cells, and cells at higher levels in the visual pathway are clearly involved in how the visual system extracts color information from spectral stimuli. However, understanding of the neural mechanisms that underlie color perception has been elusive to the scientific community @Color_Vision.
+Individual cones are entirely color blind in that their response is simply a reflection of the number of photons they capture, regardless of the wavelength of the photon. Therefore it is impossible to determine why a change in the effectiveness of a particular cone occurred. This question can only be resolved by comparing the activity in different classes of cones. Comparisons of the responses of individual cone cells, and cells at higher levels in the visual pathway are clearly involved in how the visual system extracts color information from spectral stimuli. However, understanding of the neural mechanisms that underlie color perception has been elusive to the scientific community @fig:Color_Vision.
 
 Figure:Cone_mosiac
 caption:"This diagram was produced based on histological sections from a human eye to determine the density of the cones. The diagram represents an area of about 1° of visual angle. The number of S-cones was set to 7% based on estimates from previous studies. The L-cone:M-cone ratio was set to 1.5. This is a reasonable number considering that recent studies have shown wide ranges of cone ratios in people with normal color vision. In the central fovea an area of approximately 0.34° is S-cone free. The S-cones are semi-regularly distributed and the M- and L-cones are randomly distributed. Throughout the whole retina the ratio of L- and M- cones to S-cones is about 100:1 @Rochester." 
@@ -44,9 +52,9 @@ There are two main reflection sites inside the cone photoreceptor cells that lin
 The ultimate goal of this project was to design an effective and fast method of classification of S-cones, using REST Services to facilitate user interaction with the model. 
 
 ## Data
-The data we used was from 3 different undisclosed/anonymous patients. We were given data by Dr. Millers group and was provided no data that could jeopadize the patients anonymity nor were we given any personal data that could or would put a patient's privacy in concern. 
+The data we used was from three different undisclosed/anonymous patients. We were given data by Dr. Millers group and was provided no data that could jeopadize the patients anonymity nor were we given any personal data that could or would put a patient's privacy in concern. 
 
-Our data includes 8 features: X-Coordinate, Y-Coordinate, ISOS_Z, ISOS_size_X, ISOS_size_x, COST_z, COST_X , and COST_y. These features were extracted from 3D imaging of the retinal hence the three dimensional parameter types. ISOS_z is the retinal depth location of ISOS and COST_z is the retinal depth location of COST. 
+Our data includes eight features: X-Coordinate, Y-Coordinate, ISOS_Z, ISOS_size_X, ISOS_size_x, COST_z, COST_X , and COST_y. These features were extracted from 3D imaging of the retinal hence the three dimensional parameter types. ISOS_z is the retinal depth location of ISOS and COST_z is the retinal depth location of COST. 
 
 Our raw data had some observations that were unknown or missing certain datapoints, and as such were marked "Nan" in the original dataset. We preproccessed the data in order to exclude feature vectors which included Nan for any feature value. The preproccessing that we performed on the data can be seen in the read_data.py file.  
 
@@ -59,7 +67,6 @@ Both normlization and Standardization can be seen in the file dnn.py
 We visualized our data using WebPlotViz which results can be seen using the following link. https://spidal-gw.dsc.soic.indiana.edu/dashboard 
 
 From the WebPlotViz visualizations it can be noted that the data is not clearly seperated into clusters nor in a regular shape. It also imporant to notice how there is no clear distiniction on which features are weighted heaviler than others in classifying S-cone from M and L-cones. However, histological studies have shown that the biggest differentiation betwen the different cones types is the difference between ISOS_Z - COST_Z @structure. This difference siginifes the physical length of an important component of the cone photoreceptors. In one of the visualizations we plotted X_coordinate vs Y-coordinate vs (COST_Z- ISOS_Z). In this plot it is not glaringly obvious that (COST_Z- ISOS_Z) is the most imporant feature, but there does seem to be a noticeable correlation. The lack of an obviously dominant feature led us to the conclusion that for our model to train the best no weights should be applied (*Not sure that's accurate, I think DNN will always give weights*)
-
 
 
 
