@@ -4,7 +4,7 @@
 
 :wave: we will take a look at a few things in class to make sure they are being displayed in the epub correctly 
 
-:question: DONE? Our paper will mostly likely be finalized in this format and look. Is that good?
+:question: DONE? Our paper will mostly likely be finalized in this format and look. Is that good? :smiley: YES!
 
 # S-cone Classification Using REST Services and Machine Learning
 
