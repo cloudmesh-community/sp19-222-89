@@ -2,13 +2,6 @@
 # S-cone Classification Using REST Services and Machine Learning
 
 :warning: in review 
-
-:wave: Overal very well done. Maybe a table to showcase some model parapmeters and results.
-
-:wave: we will take a look at a few things in class to make sure they are being displayed in the epub correctly 
-
-:question: DONE? Our paper will mostly likely be finalized in this format and look. Is that good? :smiley: YES!
-
 :o: basepath in yaml file not in cloudmesh domain, also app is not a good name as ambiguous and not specific to your project, change yaml and code
 
 | Brandon Fischer, Ryan Danehy
@@ -54,7 +47,8 @@ caption:"This diagram was produced based on histological sections from a human e
 
 ## Data
 The data we used was from three different undisclosed/anonymous patients. We were given data by Dr. Millers group and was provided no data that could jeopadize the patients anonymity nor were we given any personal data that could or would put a patient's privacy in concern. 
-Our data includes eight features: X-Coordinate, Y-Coordinate, ISOS_Z, ISOS_size_X, ISOS_size_x, COST_z, COST_X , and COST_y. These features were extracted from 3D imaging of the retinal hence the three dimensional parameter types. ISOS_z is the retinal depth location of ISOS and COST_z is the retinal depth location of COST.
+Our data includes eight features:
+![Features](images/Features.png){#fig:Features} These features were extracted from 3D imaging of the retinal hence the three dimensional parameter types. ISOS_z is the retinal depth location of ISOS and COST_z is the retinal depth location of COST.
 
 ### Preprocessing
 Our raw data had some observations that were unknown or missing certain datapoints, and as such were marked "Nan" in the original dataset. We preproccessed the data in order to exclude feature vectors which included Nan for any feature value. The preproccessing that we performed on the data can be seen in the read_data.py file. Machine learning models can be very sensitive to scaling and in order to prevent this we normalized the data. Normalization rescales the data to be in the range of 0 to 1, thus eliminating any possible feature scaling within our data. We performed normalization on our data using Scikit learn's preprocessing.normalize() function. This function scales the input indivudally to unit norms (vector length). In order to guarantee the quality of our data before training a model, we standardized our data. Standardization transforms data to have a mean of zero and standard deviation of 1. Standardization was performed by using scikit learn's StandardScaler(). The function first_model and retrain_model in model.py show this normalization and standardization.
