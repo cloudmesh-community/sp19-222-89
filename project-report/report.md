@@ -1,9 +1,6 @@
 
 # S-cone Classification Using REST Services and Machine Learning
 
-:warning: in review 
-:o: basepath in yaml file not in cloudmesh domain, also app is not a good name as ambiguous and not specific to your project, change yaml and code
-
 | Brandon Fischer, Ryan Danehy
 | bfisch9@iu.edu, rdanehy@iu.edu
 | Indiana University Bloomington
