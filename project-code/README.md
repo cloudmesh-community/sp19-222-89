@@ -1,12 +1,19 @@
-# Here comes your missing title
+# Retinal Cone Counter Rest Service
 
 To run this code:
-download dockerfile
+download Dockerfile and Makefile
 
 Then run the following commands in the terminal:
 
-```bash
-docker build -t service_test:latest .
+make docker-all
 
-docker run -v'pwd':/sp19-222-89/project-code -w /sp19-222-89/project-code  --rm -it -p 4555:4555 Dockerfile /bin/bash
-```
+To test the service while it is running, download a .csv file from the project-code/data directory. Then, navigate to:
+
+localhost:4555
+
+and choose the endpoint which you want to use (instructions are given on the homepage).
+
+Finally, to stop the service, open another terminal and navigate back to the directory containing the Dockerfile and Makefile.
+Then, run the command:
+
+make docker-clean
