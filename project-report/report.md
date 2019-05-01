@@ -4,7 +4,7 @@
 | Brandon Fischer, Ryan Danehy
 | bfisch9@iu.edu, rdanehy@iu.edu
 | Indiana University Bloomington
-| hid: hid: sp19-222-89 sp19-222-102
+| hid: sp19-222-89 sp19-222-102
 | github: [:cloud:](https://github.com/cloudmesh-community/sp19-222-89/tree/master/project-report/report.md)
 | code: [:cloud:](https://github.com/cloudmesh-community/sp19-222-89/tree/master/project-code)
 
