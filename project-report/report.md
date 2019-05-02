@@ -19,11 +19,6 @@ Keywords: S-cones, Scikit, Support Vect Machine, Neural Network, WebPlotViz, ISO
 
 We worked in partnership with Dr. Don Miller's lab from the IU School of Optometry to create a binary classifier which is trained to differentiate (and generate a count of) S-cones from L and M cones in 3D retinal imaging. We deployed an RBF-kernel SVM to classify S-cones vs non-S-cones. This project has clinical significance in the tracking of progression of the disease Retinitis Pigmentosa (RP). In RP, S-cones can be seen migrating from their natural positions, and eventually disappearing entirely in retinal scans. Our service could be extended from purely classifying/counting S-cones to tracking the rate of their movement and determining the progression/severity of the disease in a given patient.
 
-
-## Introduction
-
-:o: introduction is missing
-
 ## Data Set and Data Analysis
 
 :o: why is this not in the Data section?
@@ -32,7 +27,7 @@ Datasets were provided by Dr. Miller's lab which included the 3D coordinates and
 
 After the initial model is trained, unlabeled data can be given for classification via rest service, and the count and locations of S-cones will be returned via another rest service. Our service also allows the retraining of the model on new datasets, and then outputs the corresponding metrics on the newly trained model. This will allow our model to be updated and improved upon as more data becomes available. 
 
-## Basic Science
+## Introduction
 Cones or Cone cells are photoreceptor cells in the retinas of humans. They are responsible for color vison and work best in bright lights. S-cone cells differ from M-cones and L-cones based on the light wavelengths they are senstive to. For example, S-cones are sensitive to short-wavelengths, M-cones to medium-wavelengths, and L-cones to Long-wavelengths @Role. Short-wavelengths correspond with 'blue', medium with 'green', and long with 'red', therefore it is believed that the study of these cones could lead to new insights into dieseases such as red-green colorblindness.
 
 ![Spectrum of Wavlengths](images/Color_Vision.png){#fig:Color_Vision}
