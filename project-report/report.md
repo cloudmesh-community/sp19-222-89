@@ -19,14 +19,6 @@ Keywords: S-cones, Scikit, Support Vect Machine, Neural Network, WebPlotViz, ISO
 
 We worked in partnership with Dr. Don Miller's lab from the IU School of Optometry to create a binary classifier which is trained to differentiate (and generate a count of) S-cones from L and M cones in 3D retinal imaging. We deployed an RBF-kernel SVM to classify S-cones vs non-S-cones. This project has clinical significance in the tracking of progression of the disease Retinitis Pigmentosa (RP). In RP, S-cones can be seen migrating from their natural positions, and eventually disappearing entirely in retinal scans. Our service could be extended from purely classifying/counting S-cones to tracking the rate of their movement and determining the progression/severity of the disease in a given patient.
 
-## Data Set and Data Analysis
-
-:o: why is this not in the Data section?
-
-Datasets were provided by Dr. Miller's lab which included the 3D coordinates and aperture size of each cone detected within the retinal scan. Using this information, we were able to differentiate the S-cones from the others due to their deeper position and wider aperture compared to the other cell types. Our starting dataset includes information from the images of three patients' retinas, with a mix of healthy and colorblind individuals. Additional data was collected/requested as needed.
-
-After the initial model is trained, unlabeled data can be given for classification via rest service, and the count and locations of S-cones will be returned via another rest service. Our service also allows the retraining of the model on new datasets, and then outputs the corresponding metrics on the newly trained model. This will allow our model to be updated and improved upon as more data becomes available. 
-
 ## Introduction
 Cones or Cone cells are photoreceptor cells in the retinas of humans. They are responsible for color vison and work best in bright lights. S-cone cells differ from M-cones and L-cones based on the light wavelengths they are senstive to. For example, S-cones are sensitive to short-wavelengths, M-cones to medium-wavelengths, and L-cones to Long-wavelengths @Role. Short-wavelengths correspond with 'blue', medium with 'green', and long with 'red', therefore it is believed that the study of these cones could lead to new insights into dieseases such as red-green colorblindness.
 
@@ -41,7 +33,10 @@ caption:"This diagram was produced based on histological sections from a human e
 
 ## Data
 
-The data we used was from three different undisclosed/anonymous patients. We were given data by Dr. Millers group and was provided no data that could jeopadize the patients anonymity nor were we given any personal data that could or would put a patient's privacy in concern. 
+Datasets were provided by Dr. Miller's lab which included the 3D coordinates and aperture size of each cone detected within the retinal scan. Using this information, we were able to differentiate the S-cones from the others due to their deeper position and wider aperture compared to the other cell types. Our starting dataset includes information from the images of three patients' retinas, with a mix of healthy and colorblind individuals. Additional data was collected as needed. The data provided was delivered in a fashion to not jeopadize the patients anonymity nor were we given any personal data that could or would put a patient's privacy in concern.
+
+After the initial model was trained, unlabeled data is given a classification through a rest service, and the count and locations of S-cones was returned via another rest service. The service also allows the retraining of the model on new datasets, and outputs the corresponding metrics on the newly trained model. This allows the model to be updated and re-trained as more data becomes available. 
+
 Our data includes eight features: X-Coordinate of cone (Coord_X), Y Coordinate of cone (Coord_Y),Retina Depth location of Inner- Outer Segment(ISOS_Z), X Coordinate of ISOS (ISOS_size_X), Y Coordinate of ISOS (ISOS_size_Y), Retina Depth location of COST (COST_Z), X Coordinate of COST (COST_size_X), and Y Coordinate of COST (COST_size_Y). These features were extracted from 3D imaging of the retinal hence the three dimensional parameter types. ISOS_z is the retinal depth location of ISOS and COST_z is the retinal depth location of COST.
 
 ### Preprocessing
