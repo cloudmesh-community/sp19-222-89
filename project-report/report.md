@@ -237,7 +237,7 @@ making this activation function perfect for our model [@89-Activation].
 REST is an abstraction of the basic HTTP methods (like GET, POST, etc)
 which is used to build APIs that behave in predictable ways. The basic
 behaviors of REST services are called CRUD: Create, Read, Update, and
-Delete [@REST]. These map to the HTTP methods POST, GET, PUT, and
+Delete [@89-REST]. These map to the HTTP methods POST, GET, PUT, and
 DELETE, respectively. When a server is launched that implements REST
 conventions, the fields of the URL submitted to the website will
 contain endpoints and/or parameters which are used to specify the
