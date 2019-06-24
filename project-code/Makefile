@@ -40,5 +40,6 @@ docker-clean: docker-save docker-stop docker-remove
 	@echo "docker service stopped and image removed"
 
 clean:
+	kill $(lsof -t -i :4555)
 	@echo "removing service files created"
 	rm -rf $(CREATED)

@@ -265,7 +265,7 @@ def retrain_model(new_files):
     )
     f_result.write("F1: " + str(f1) + "<br /><br /><br />")
     f_result.write("List of S-Cone indices: " + str(s_cone_list))
-    f_result.write("Accuracy: " + str(acc) + "<br />")
+    f_result.write("<br />Accuracy: " + str(acc) + "<br />")
     f_result.write("Precision: " + str(prec) + "<br />")
     f_result.write("Recall: " + str(rec) + "<br />")
 
@@ -281,6 +281,11 @@ def retrain_model(new_files):
         f_result.write("Previous Accuracy: " + str(old_acc) + "<br />")
         f_result.write("Previous Precision: " + str(old_prec) + "<br />")
         f_result.write("Previous Recall: " + str(old_rec) + "<br />")
+
+    if(old_f1>f1):
+        os.remove("./model_files/newmodeldnn.joblib")
+        os.rename("./model_files/oldmodeldnn.joblib", "./model_files/newmodeldnn.joblib")
+        f_result.write("<br />Previous model was deemed better due to F1 score therefore previous model was kept")
 
     f_result.write("<br /><br /><br />\n</body>\n</html>")
     f_result.close()
