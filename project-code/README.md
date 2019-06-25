@@ -30,4 +30,4 @@ docker login
 -logins into docker and makes sure it is running.
 
 Note: to install docker go to this link https://docs.docker.com/docker-for-mac/install/
-Visulization: https://spidal-gw.dsc.soic.indiana.edu/public/groupdashboard/E222
+Visualization: https://spidal-gw.dsc.soic.indiana.edu/public/groupdashboard/E222
