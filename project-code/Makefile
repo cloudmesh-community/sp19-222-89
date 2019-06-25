@@ -17,8 +17,6 @@ service:
 
 start:
 	@echo "starting the service"
-	pip install --upgrade pip
-	pip install -r requirements.txt
 	python server.py
 
 docker-save:
