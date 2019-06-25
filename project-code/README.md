@@ -24,9 +24,11 @@ make docker-clean
 Other Commands:
 make docker-stop 
 -stops the program but keeps the container up so it can be easily restarted without rebuilding the whole container
+
 make docker-start
 
 -Restarts the program after it has been stopped.
+
 docker login
 
 -logins into docker and makes sure it is running.
