@@ -133,7 +133,7 @@ retrain_model in model.py show this normalization and standardization.
 
 We visualized our data using WebPlotViz which results can be seen
 using the following link.
-https://spidal-gw.dsc.soic.indiana.edu/dashboard. From the WebPlotViz
+https://spidal-gw.dsc.soic.indiana.edu/public/groupdashboard/E222. From the WebPlotViz
 visualizations it can be noted that the data is not clearly seperated
 into clusters nor in a regular shape. It also imporant to notice how
 there is no clear distiniction on which features are weighted heaviler
