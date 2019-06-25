@@ -20,3 +20,13 @@ Finally, to stop the service, open another terminal and navigate back to the dir
 Then, run the command:
 
 make docker-clean
+
+Other Commands:
+make docker-stop 
+-stops the program but keeps the container up so it can be easily restarted without rebuilding the whole container
+make docker-start
+-Restarts the program after it has been stopped.
+docker login
+-logins into docker and makes sure it is running.
+
+Note: to install docker go to this link https://docs.docker.com/docker-for-mac/install/
