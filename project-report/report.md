@@ -1,4 +1,3 @@
-
 # S-cone Classification Using REST Services and Machine Learning
 
 | Brandon Fischer, Ryan Danehy
